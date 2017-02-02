@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Gyro
+		</title>
+	</head>
+	<body>
+		<div id="x"></div>
+		<div id="y"></div>
+		<div id="z"></div>
+		<script type="text/javascript">
+			function gyro(e) {
+				document.getElementById('x').innerHTML = e.accelerationIncludingGravity.x;
+				document.getElementById('y').innerHTML = e.accelerationIncludingGravity.y;
+				document.getElementById('z').innerHTML = e.accelerationIncludingGravity.z;
+			}
+
+			window.addEventListener('devicemotion', gyro, true);
+		</script>
+	</body>
+</html>
