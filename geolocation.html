@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Geolocation
+		</title>
+	</head>
+	<body>
+		<div id="lat"></div>
+		<div id="long"></div>
+		<script type="text/javascript">
+			function success(position) {
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
+				document.getElementById('lat').innerHTML = latitude;
+				document.getElementById('long').innerHTML = longitude;
+			}
+
+			function error(e) {
+				document.getElementById('lat').innerHTML = 'Error';
+				if (e.message.indexOf('Only secure origins are allowed') == 0) {
+					document.getElementById('long').innerHTML = 'HTTPS';
+				}
+			}
+
+			navigator.geolocation.getCurrentPosition(success, error);
+		</script>
+	</body>
+</html>
