@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Scene</title>
+
+		<style>
+			body {
+				margin: 0;
+				overflow: hidden;
+			}
+		</style>
+		<script src="../libs/three.js"></script>
+		<script src="../libs/OrbitControls.js"></script>
+		<script src="../libs/FirstPersonControls.js"></script>
+	</head>
+
+	<body>
+		<div id="container"></div>
+
+		<script>
+			var renderer = new THREE.WebGLRenderer({ antialias: true });
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.setClearColor(0xffffff, 1);
+			document.getElementById('container').appendChild(renderer.domElement);
+
+			var scene = new THREE.Scene();
+			scene.background = new THREE.Color(0xaaeeff);
+
+			var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+			camera.position.set(0, 2, 10);
+			camera.lookAt(0, 2, 0);
+			scene.add(camera);
+
+			// var orbitControls = new THREE.OrbitControls( camera );
+			// var clock = new THREE.Clock();
+
+			var axisHelper = new THREE.AxisHelper(50);
+			scene.add(axisHelper);
+
+			var planeGeometry = new THREE.PlaneGeometry(40, 20);
+			var material = new THREE.MeshNormalMaterial();
+			var planeMesh = new THREE.Mesh(planeGeometry, material);
+			planeMesh.rotation.x = -Math.PI/2;
+			scene.add(planeMesh);
+
+			var cubeGeometry = new THREE.BoxGeometry(5, 5, 5);
+			var cubeMesh = new THREE.Mesh(cubeGeometry, material);
+			cubeMesh.position.set(-17.5, 2.5, 7.5);
+			scene.add(cubeMesh);
+
+			var cubeGeometry2 = new THREE.BoxGeometry(2, 15, 2);
+			var cubeMesh2 = new THREE.Mesh(cubeGeometry2, material);
+			cubeMesh2.position.set(0, 5, 0);
+			scene.add(cubeMesh2);
+
+			var sphereGeometry = new THREE.SphereGeometry(5, 100, 100);
+			var sphere = new THREE.Mesh(sphereGeometry, material);
+			sphere.position.set(15, 2, -5);
+			scene.add(sphere);
+
+			var rvelocity = 0;
+			var fvelocity = 0;
+			function animate() {
+				// var delta = clock.getDelta();
+				// orbitControls.update(delta);
+				camera.rotation.y += rvelocity;
+				var angle = camera.rotation.y;
+				camera.position.x += fvelocity * Math.sin(angle);
+				camera.position.z += fvelocity * Math.cos(angle);
+				renderer.render(scene, camera);
+				requestAnimationFrame(animate);
+			}
+			animate();
+
+			document.addEventListener('mousemove', function (e) {
+				if (Math.abs(e.clientX - window.innerWidth/2) > 100) {
+					rvelocity = -1 * (e.clientX - window.innerWidth / 2) * (0.02 / (window.innerWidth / 2));
+				} else {
+					rvelocity = 0;
+				}
+			});
+
+			document.addEventListener('keydown', function (e) {
+				var code = e.which;
+				if (code == 87) {
+					fvelocity = -0.1;
+				} else if (code == 83) {
+					fvelocity = 0.1;
+				}
+			});
+
+			document.addEventListener('keyup', function (e) {
+				var code = e.which;
+				if (code == 87) {
+					fvelocity = 0;
+				} else if (code == 83) {
+					fvelocity = 0;
+				}
+			});
+		</script>
+	</body>
+</html>
