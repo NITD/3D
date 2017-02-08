@@ -11,9 +11,7 @@
 				overflow: hidden;
 			}
 		</style>
-		<script src="../libs/three.js"></script>
-		<script src="../libs/OrbitControls.js"></script>
-		<script src="../libs/FirstPersonControls.js"></script>
+		<script src="three.js"></script>
 	</head>
 
 	<body>
@@ -32,9 +30,6 @@
 			camera.position.set(0, 2, 10);
 			camera.lookAt(0, 2, 0);
 			scene.add(camera);
-
-			// var orbitControls = new THREE.OrbitControls( camera );
-			// var clock = new THREE.Clock();
 
 			var axisHelper = new THREE.AxisHelper(50);
 			scene.add(axisHelper);
@@ -63,8 +58,6 @@
 			var rvelocity = 0;
 			var fvelocity = 0;
 			function animate() {
-				// var delta = clock.getDelta();
-				// orbitControls.update(delta);
 				camera.rotation.y += rvelocity;
 				var angle = camera.rotation.y;
 				camera.position.x += fvelocity * Math.sin(angle);
