@@ -9,14 +9,25 @@
 		<div id="x"></div>
 		<div id="y"></div>
 		<div id="z"></div>
+		<div id="absolute"></div>
+		<div id="alpha"></div>
+		<div id="beta"></div>
+		<div id="gamma"></div>
 		<script type="text/javascript">
 			function gyro(e) {
 				document.getElementById('x').innerHTML = e.accelerationIncludingGravity.x;
 				document.getElementById('y').innerHTML = e.accelerationIncludingGravity.y;
 				document.getElementById('z').innerHTML = e.accelerationIncludingGravity.z;
 			}
+			function orientation(e) {
+				document.getElementById('absolute').innerHTML = e.absolute;
+				document.getElementById('alpha').innerHTML = e.alpha;
+				document.getElementById('beta').innerHTML = e.beta;
+				document.getElementById('gamma').innerHTML = e.gamma;
+			}
 
 			window.addEventListener('devicemotion', gyro, true);
+			window.addEventListener('deviceorientation', orientation, true);
 		</script>
 	</body>
 </html>
