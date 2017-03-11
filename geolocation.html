@@ -17,7 +17,7 @@
 			}
 
 			function error(e) {
-				document.getElementById('lat').innerHTML = 'Error';
+				document.getElementById('lat').innerHTML = e.message;
 				if (e.message.indexOf('Only secure origins are allowed') == 0) {
 					document.getElementById('long').innerHTML = 'HTTPS';
 				}
