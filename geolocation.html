@@ -9,6 +9,11 @@
 		<div id="lat"></div>
 		<div id="long"></div>
 		<script type="text/javascript">
+			var geoOptions = {
+				enableHighAccuracy: true,
+				maximumAge: 0
+			};
+
 			function success(position) {
 				var latitude = position.coords.latitude;
 				var longitude = position.coords.longitude;
@@ -23,7 +28,7 @@
 				}
 			}
 
-			navigator.geolocation.getCurrentPosition(success, error);
+			navigator.geolocation.watchPosition(success, error, geoOptions);
 		</script>
 	</body>
 </html>
