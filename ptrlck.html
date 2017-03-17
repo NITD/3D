@@ -23,6 +23,7 @@
 			var box = document.getElementById("box");
 			box.requestPointerLock = box.requestPointerLock || box.mozRequestPointerLock;
 			box.onclick = function() {
+				window.alert('wow');
 				box.requestPointerLock();
 			}
 		</script>
