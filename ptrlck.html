@@ -22,7 +22,9 @@
 		<script type="text/javascript">
 			var box = document.getElementById("box");
 			box.requestPointerLock = box.requestPointerLock || box.mozRequestPointerLock;
-			box.requestPointerLock();
+			box.onclick = function() {
+				box.requestPointerLock();
+			}
 		</script>
 	</body>
 </html>
