@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pointer Lock</title>
+		<style>
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0px;
+				padding: 0px;
+				overflow: hidden;
+			}
+			#box {
+				width: 100%;
+				height: 500px;
+				background-color: black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			box.requestPointerLock = box.requestPointerLock || box.mozRequestPointerLock;
+			box.requestPointerLock();
+		</script>
+	</body>
+</html>
